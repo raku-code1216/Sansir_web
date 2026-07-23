@@ -1167,7 +1167,7 @@
             </div>
         </section>
 
-        <!-- ========================================== -->
+      <!-- ========================================== -->
 <!-- 風穎教育 - 每週特訓與 VIP 全自動歷屆總庫專區 -->
 <!-- ========================================== -->
 <div style="max-width: 850px; margin: 30px auto; padding: 25px; border: 2px solid #2980b9; border-radius: 12px; background-color: #f4f9fc; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;">
@@ -1210,7 +1210,7 @@
             </a>
             
             <div id="vip-input-box" style="display: none; margin-top: 10px;">
-                <input type="text" id="vip-passcode" placeholder="輸入當週密碼 (例: fwsunsir20260720)" style="padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; width: 240px; text-transform: lowercase;">
+                <input type="password" id="vip-passcode" placeholder="輸入 VIP 專屬密碼" style="padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; width: 240px; text-transform: lowercase;">
                 <button onclick="unlockByVip()" style="padding: 8px 15px; background-color: #34495e; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">解鎖總庫</button>
             </div>
         </div>
@@ -1376,7 +1376,8 @@
             
             checkAndRenderNotes(gradeCode, gradeName, true);
         } else {
-            alert(`❌ 密碼不正確或已過期。\n\n提示：當週 VIP 密碼為「fwsunsir + 本週一日期」。請向 燊Sir 查詢最新密碼。`);
+            // 已根據指示移除密碼提示
+            alert(`❌ 密碼不正確或已過期。請向 燊Sir 查詢最新密碼。`);
         }
     }
 
