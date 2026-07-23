@@ -1167,6 +1167,234 @@
             </div>
         </section>
 
+        <!-- ========================================== -->
+<!-- 風穎教育 - 每週特訓與 VIP 全自動歷屆總庫專區 -->
+<!-- ========================================== -->
+<div style="max-width: 850px; margin: 30px auto; padding: 25px; border: 2px solid #2980b9; border-radius: 12px; background-color: #f4f9fc; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 15px;">
+        <span style="background-color: #e74c3c; color: #fff; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 14px;">🔥 燊Sir 每週拔尖特訓專區</span>
+        <span style="font-size: 13px; color: #7f8c8d; font-weight: bold;">🗓️ 全自動智能派發 ✖️ 自選 P1–P6 年級</span>
+    </div>
+
+    <h2 style="color: #2c3e50; margin: 10px 0; font-size: 20px;">【免費領取】風穎教育小學數學手寫解題秘笈</h2>
+    <p style="color: #555; line-height: 1.6; font-size: 14px;">
+        請選擇小朋友就讀的年級，點擊分享至 WhatsApp，即可瞬間解鎖該年級最新的<b>「拔尖手寫思維筆記與實戰題庫 PDF」</b>！
+    </p>
+
+    <!-- 主控板區域 -->
+    <div id="weekly-share-panel" style="background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #d6eaf8; text-align: center; margin-top: 15px;">
+        
+        <label for="weekly-grade-select" style="font-weight: bold; color: #34495e; font-size: 15px; display: block; margin-bottom: 8px;">
+            📌 第一步：請選擇目標年級
+        </label>
+        <select id="weekly-grade-select" style="padding: 10px 15px; font-size: 15px; border-radius: 6px; border: 1px solid #bdc3c7; width: 85%; max-width: 320px; margin-bottom: 15px;">
+            <option value="P1">小一 (Primary 1) - 最新手寫特訓筆記</option>
+            <option value="P2">小二 (Primary 2) - 最新手寫特訓筆記</option>
+            <option value="P3">小三 (Primary 3) - 最新手寫特訓筆記</option>
+            <option value="P4">小四 (Primary 4) - 最新手寫特訓筆記</option>
+            <option value="P5">小五 (Primary 5) - 最新手寫特訓筆記</option>
+            <option value="P6" selected>小六 (Primary 6) - 最新手寫特訓筆記</option>
+        </select>
+
+        <br>
+
+        <button id="weekly-share-btn" onclick="executeWeeklyShare()" style="background-color: #25D366; color: white; border: none; padding: 12px 25px; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+            📲 第二步：分享至 WhatsApp 領取最新筆記
+        </button>
+
+        <!-- VIP 登入通道 -->
+        <div style="margin-top: 15px; border-top: 1px dashed #e0e0e0; padding-top: 10px;">
+            <a href="javascript:void(0);" onclick="toggleVipPanel()" style="color: #7f8c8d; font-size: 13px; text-decoration: underline;">
+                🎓 風穎教育現有學生？點此登入 VIP 歷屆筆記總庫
+            </a>
+            
+            <div id="vip-input-box" style="display: none; margin-top: 10px;">
+                <input type="text" id="vip-passcode" placeholder="輸入當週密碼 (例: fwsunsir20260720)" style="padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; width: 240px; text-transform: lowercase;">
+                <button onclick="unlockByVip()" style="padding: 8px 15px; background-color: #34495e; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">解鎖總庫</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 一般家長：解鎖顯示區 -->
+    <div id="weekly-unlocked-area" style="display: none; margin-top: 20px; padding: 20px; background-color: #eafaf1; border-left: 5px solid #2ecc71; border-radius: 5px;">
+        <h3 style="color: #27ae60; margin-top: 0; font-size: 18px;">🎉 專屬手寫筆記已成功解鎖！</h3>
+        <p id="weekly-unlocked-info" style="color: #2c3e50; font-size: 15px; margin-bottom: 15px;"></p>
+        <a id="weekly-pdf-link" href="#" target="_blank" style="display: inline-block; background-color: #2980b9; color: white; padding: 12px 22px; border-radius: 6px; text-decoration: none; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            📄 點擊查看 / 下載最新特訓 PDF
+        </a>
+    </div>
+
+    <!-- VIP 在讀學生：全自動歷屆筆記總庫區 -->
+    <div id="vip-archive-area" style="display: none; margin-top: 20px; padding: 20px; background-color: #fef9e7; border: 2px solid #f39c12; border-radius: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 style="color: #d35400; margin: 0; font-size: 19px;">👑 風穎教育 VIP 專屬 —— 歷屆特訓筆記總庫</h3>
+            <span style="background-color: #f39c12; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">在讀學生獨享</span>
+        </div>
+        <p style="color: #666; font-size: 14px; margin-bottom: 15px;">歡迎使用 VIP 專屬通道！系統已自動為您統整本學期過往所有手寫拔尖筆記。請在上方下拉式選單切換年級，即可查看對應的歷屆檔案：</p>
+        
+        <div id="vip-archive-list" style="background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #f0e4d2;">
+            <p style="color: #7f8c8d; font-size: 14px; text-align: center;">系統正在掃描伺服器檔案，請稍候...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const SYSTEM_START_WEEK = 30; // 系統起始營運週數
+
+    function getCurrentISOWeek() {
+        const d = new Date();
+        d.setHours(0, 0, 0, 0);
+        d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+        const yearStart = new Date(d.getFullYear(), 0, 1);
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    function getValidWeeklyPasscode() {
+        const d = new Date();
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+        const monday = new Date(d.setDate(diff));
+        
+        const yyyy = monday.getFullYear();
+        const mm = String(monday.getMonth() + 1).padStart(2, '0');
+        const dd = String(monday.getDate()).padStart(2, '0');
+        
+        return `fwsunsir${yyyy}${mm}${dd}`; 
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        checkWeeklyShareStatus();
+    });
+
+    function checkWeeklyShareStatus() {
+        const lastShareWeek = localStorage.getItem("fw_last_share_week");
+        const currentWeek = `${new Date().getFullYear()}-W${getCurrentISOWeek()}`;
+
+        if (lastShareWeek === currentWeek) {
+            const btn = document.getElementById("weekly-share-btn");
+            btn.style.backgroundColor = "#95a5a6";
+            btn.innerText = "✅ 本週已領取手寫筆記（下週一自動開放）";
+            btn.disabled = true;
+            btn.style.cursor = "not-allowed";
+        }
+    }
+
+    async function checkAndRenderNotes(gradeCode, gradeName, isVip = false) {
+        const currentWeek = getCurrentISOWeek();
+        let latestAvailableWeek = null;
+        let archiveHtml = `<h4 style="color: #d35400; margin-top: 0; margin-bottom: 15px;">📚 ${gradeName} 歷屆手寫筆記目錄</h4>`;
+        let hasArchive = false;
+
+        for (let w = currentWeek; w >= SYSTEM_START_WEEK; w--) {
+            const fileUrl = `./notes/${gradeCode}_extranotes_${w}.pdf`;
+            
+            try {
+                const response = await fetch(fileUrl, { method: 'HEAD', cache: 'no-cache' });
+                
+                if (response.ok) {
+                    if (latestAvailableWeek === null) {
+                        latestAvailableWeek = w; 
+                    } 
+                    
+                    if (isVip && w !== latestAvailableWeek) {
+                        archiveHtml += `<div style="padding: 10px; border-bottom: 1px dashed #f0e4d2; text-align: left; display: flex; justify-content: space-between;">`;
+                        archiveHtml += `<span style="color: #34495e;">🗓️ <strong>第 ${w} 週：</strong> ${gradeName} 拔尖特訓</span>`;
+                        archiveHtml += `<a href="${fileUrl}" target="_blank" style="color: #2980b9; text-decoration: underline; font-weight: bold;">下載 PDF</a>`;
+                        archiveHtml += `</div>`;
+                        hasArchive = true;
+                    }
+                }
+            } catch (error) {
+                console.log(`Week ${w} notes not found.`);
+            }
+        }
+
+        if (!isVip) {
+            if (latestAvailableWeek) {
+                document.getElementById("weekly-unlocked-info").innerText = `您已成功解鎖【${gradeName}】最新手寫解題秘笈！`;
+                document.getElementById("weekly-pdf-link").href = `./notes/${gradeCode}_extranotes_${latestAvailableWeek}.pdf`;
+                document.getElementById("weekly-pdf-link").style.display = "inline-block";
+            } else {
+                document.getElementById("weekly-unlocked-info").innerText = `本年級最新筆記正在緊急編製中，請稍後再來！`;
+                document.getElementById("weekly-pdf-link").style.display = "none";
+            }
+        } else {
+            if (latestAvailableWeek) {
+                let latestHtml = `<div style="padding: 10px; text-align: left; display: flex; justify-content: space-between; background-color: #fdf2e9; border-radius: 4px; margin-bottom: 15px;">`;
+                latestHtml += `<span style="color: #c0392b;">🔥 <strong>最新一期特訓 (第 ${latestAvailableWeek} 週)：</strong> ${gradeName} 拔尖特訓</span>`;
+                latestHtml += `<a href="./notes/${gradeCode}_extranotes_${latestAvailableWeek}.pdf" target="_blank" style="color: #c0392b; text-decoration: underline; font-weight: bold;">下載 PDF</a>`;
+                latestHtml += `</div>`;
+                archiveHtml = latestHtml + archiveHtml;
+            }
+            
+            if (!hasArchive && latestAvailableWeek === null) {
+                archiveHtml += "<p style='color: #7f8c8d; font-size: 14px;'>目前伺服器尚未有任何歸檔筆記。</p>";
+            }
+            document.getElementById("vip-archive-list").innerHTML = archiveHtml;
+        }
+    }
+
+    function executeWeeklyShare() {
+        const selectElement = document.getElementById("weekly-grade-select");
+        const selectedGrade = selectElement.value;
+        const gradeCode = selectedGrade.toLowerCase();
+        const gradeName = selectElement.options[selectElement.selectedIndex].text.split(" ")[0];
+        
+        const shareText = encodeURIComponent(`推薦燊Sir主理的風穎教育網站！每週分享即可免費領取【${gradeName}】數學拔尖手寫解題筆記：https://thesunconceptfw.com`);
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${shareText}`;
+        window.open(whatsappUrl, '_blank');
+
+        const currentWeek = `${new Date().getFullYear()}-W${getCurrentISOWeek()}`;
+        localStorage.setItem("fw_last_share_week", currentWeek);
+
+        setTimeout(function() {
+            document.getElementById("weekly-share-panel").style.display = "none";
+            document.getElementById("weekly-unlocked-area").style.display = "block";
+            checkAndRenderNotes(gradeCode, gradeName, false);
+            checkWeeklyShareStatus();
+        }, 1000);
+    }
+
+    function toggleVipPanel() {
+        const box = document.getElementById("vip-input-box");
+        box.style.display = box.style.display === "none" ? "block" : "none";
+    }
+
+    function unlockByVip() {
+        const userInput = document.getElementById("vip-passcode").value.trim().toLowerCase();
+        const correctPasscode = getValidWeeklyPasscode(); 
+
+        if (userInput === correctPasscode) {
+            alert("🎓 恭喜！風穎教育 VIP 在讀學生身份驗證成功，已為您開啟【歷屆手寫筆記總庫】！");
+            document.getElementById("weekly-share-panel").style.display = "none";
+            document.getElementById("vip-archive-area").style.display = "block";
+            
+            const selectElement = document.getElementById("weekly-grade-select");
+            const gradeCode = selectElement.value.toLowerCase();
+            const gradeName = selectElement.options[selectElement.selectedIndex].text.split(" ")[0];
+            
+            checkAndRenderNotes(gradeCode, gradeName, true);
+        } else {
+            alert(`❌ 密碼不正確或已過期。\n\n提示：當週 VIP 密碼為「fwsunsir + 本週一日期」。請向 燊Sir 查詢最新密碼。`);
+        }
+    }
+
+    document.getElementById("weekly-grade-select").addEventListener("change", function() {
+        if (document.getElementById("vip-archive-area").style.display === "block") {
+            const selectElement = document.getElementById("weekly-grade-select");
+            const gradeCode = selectElement.value.toLowerCase();
+            const gradeName = selectElement.options[selectElement.selectedIndex].text.split(" ")[0];
+            
+            document.getElementById("vip-archive-list").innerHTML = '<p style="color: #7f8c8d; font-size: 14px; text-align: center;">系統正在掃描伺服器檔案，請稍候...</p>';
+            checkAndRenderNotes(gradeCode, gradeName, true);
+        }
+    });
+</script>
+<!-- ========================================== -->
+<!-- 結束 -->
+<!-- ========================================== -->
+
         <!-- FAQ Section -->
         <section id="faq" class="section-padding bg-alt">
             <div class="container">
