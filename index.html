@@ -1250,15 +1250,19 @@
         return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
     }
 
+  // 防彈版：動態生成當週 VIP 密碼 (格式: fwsunsir + 當週星期一的 YYYYMMDD)
     function getValidWeeklyPasscode() {
-        const d = new Date();
-        const day = d.getDay();
-        const diff = d.getDate() - day + (day === 0 ? -6 : 1);
-        const monday = new Date(d.setDate(diff));
+        const today = new Date();
+        const dayOfWeek = today.getDay(); // 0 是星期日, 1 是星期一
+        const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // 計算距離本週一有幾天
         
-        const yyyy = monday.getFullYear();
-        const mm = String(monday.getMonth() + 1).padStart(2, '0');
-        const dd = String(monday.getDate()).padStart(2, '0');
+        // 使用絕對時間戳記相減，徹底避免 setDate() 帶來的跨月/跨年計算錯誤
+        const mondayTime = today.getTime() - (daysToSubtract * 24 * 60 * 60 * 1000);
+        const mondayDate = new Date(mondayTime);
+        
+        const yyyy = mondayDate.getFullYear();
+        const mm = String(mondayDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(mondayDate.getDate()).padStart(2, '0');
         
         return `fwsunsir${yyyy}${mm}${dd}`; 
     }
@@ -1361,9 +1365,13 @@
         box.style.display = box.style.display === "none" ? "block" : "none";
     }
 
+// VIP 登入驗證
     function unlockByVip() {
         const userInput = document.getElementById("vip-passcode").value.trim().toLowerCase();
         const correctPasscode = getValidWeeklyPasscode(); 
+        
+        // 燊Sir 專屬除錯工具：按下 F12 可在 Console 看到系統目前預期的正確密碼
+        console.log("【風穎教育系統】本週正確密碼為: ", correctPasscode);
 
         if (userInput === correctPasscode) {
             alert("🎓 恭喜！風穎教育 VIP 在讀學生身份驗證成功，已為您開啟【歷屆手寫筆記總庫】！");
@@ -1376,8 +1384,7 @@
             
             checkAndRenderNotes(gradeCode, gradeName, true);
         } else {
-            // 已根據指示移除密碼提示
-            alert(`❌ 密碼不正確或已過期。請向 燊Sir 查詢最新密碼。`);
+            alert(`❌ 密碼不正確或已過期。\n\n提示：當週 VIP 密碼為「fwsunsir + 本週一日期」。`);
         }
     }
 
