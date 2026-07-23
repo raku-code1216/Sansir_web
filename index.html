@@ -1167,7 +1167,7 @@
             </div>
         </section>
 
-    <!-- ========================================== -->
+<!-- ========================================== -->
 <!-- 風穎教育 - 每週特訓與 VIP 全自動歷屆總庫專區 -->
 <!-- ========================================== -->
 <div style="max-width: 850px; margin: 30px auto; padding: 25px; border: 2px solid #2980b9; border-radius: 12px; background-color: #f4f9fc; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-family: 'PingFang HK', 'Microsoft JhengHei', sans-serif;">
@@ -1180,7 +1180,7 @@
     <h2 style="color: #2c3e50; margin: 10px 0; font-size: 20px;">【免費領取】風穎教育小學數學手寫解題秘笈</h2>
     <p style="color: #555; line-height: 1.6; font-size: 14px;">
         請先選擇小朋友就讀的年級，並輸入由 燊Sir 提供的專屬密碼，即可瞬間解鎖！
-        <br><span style="color: #e74c3c; font-weight: bold; font-size: 13px;">⚠️ 每週限定領取一份最新特訓，過期無法回溯！未報讀家長請 WhatsApp 燊Sir 索取本週免費密碼。</span>
+        <br><span style="color: #e74c3c; font-weight: bold; font-size: 13px;">⚠️ 每週限定領取一份最新特訓，過期無法回溯！未報讀家長請點擊下方按鈕 WhatsApp 燊Sir 索取免費密碼。</span>
     </p>
 
     <!-- 主控板區域 -->
@@ -1190,7 +1190,6 @@
             📌 第一步：請選擇目標年級 (P1-P6)
         </label>
         
-        <!-- 這裡就是家長選擇年級的下拉式選單 (Dropdown Menu) -->
         <select id="weekly-grade-select" style="padding: 10px 15px; font-size: 15px; border-radius: 6px; border: 1px solid #bdc3c7; width: 85%; max-width: 320px; margin-bottom: 15px;">
             <option value="P1">小一 (Primary 1) - 最新手寫特訓筆記</option>
             <option value="P2">小二 (Primary 2) - 最新手寫特訓筆記</option>
@@ -1204,12 +1203,20 @@
         <label for="vip-passcode" style="font-weight: bold; color: #34495e; font-size: 15px; display: block; margin-bottom: 8px; margin-top: 10px;">
             🔑 第二步：請輸入解鎖密碼
         </label>
-        <!-- 密碼輸入框 -->
+        
         <input type="text" id="vip-passcode" placeholder="輸入免費或 VIP 專屬密碼" style="padding: 10px; font-size: 15px; border: 1px solid #ccc; border-radius: 4px; width: 85%; max-width: 240px; margin-bottom: 15px;">
         <br>
+        
         <button onclick="unlockByVip()" style="background-color: #2980b9; color: white; border: none; padding: 12px 25px; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
             🔓 立即解鎖筆記
         </button>
+
+        <br>
+        
+        <!-- WhatsApp 索取密碼專屬按鈕 (已內建對話範本) -->
+        <a href="https://wa.me/852YOURNUMBER?text=%E7%87%8ASir%EF%BC%8C%E6%82%A8%E5%A5%BD%EF%BC%81%E6%88%91%E8%A6%8B%E5%88%B0%E9%A2%A8%E7%A9%8E%E6%95%99%E8%82%B2%E5%98%85%E7%B6%B2%E7%AB%99%E6%9C%89%E6%AF%8F%E9%80%B1%E6%9C%80%E6%96%B0%E5%98%85%E6%95%B8%E5%AD%B8%E6%8B%94%E5%B0%96%E7%89%B9%E8%A8%93%E7%AD%86%E8%A8%98%EF%BC%8C%E6%83%B3%E7%82%BA%E5%B0%8F%E6%9C%8B%E5%8F%8B%E7%B4%A2%E5%8F%96%E6%9C%AC%E9%80%B1%E5%98%85%E3%80%90%E5%85%8D%E8%B2%BB%E8%A7%A3%E9%8E%96%E5%AF%86%E7%A2%BC%E3%80%91%E3%80%82%0A%0A%F0%9F%91%A6%F0%9F%8F%BB%F0%9F%91%A7%F0%9F%8F%BB%20%E5%AD%B8%E7%94%9F%E8%B3%87%E6%96%99%EF%BC%9A%0A%E5%AD%B8%E7%94%9F%E5%A7%93%E5%90%8D%EF%BC%9A_________%0A%E5%B0%B1%E8%AE%80%E5%B9%B4%E7%B4%9A%EF%BC%9AP__%0A%0A%E5%94%94%E8%A9%B2%E6%99%92%E7%87%8ASir%EF%BC%81%F0%9F%98%8A" target="_blank" style="display: inline-block; background-color: #25D366; color: white; border: none; padding: 12px 25px; font-size: 15px; font-weight: bold; border-radius: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.15); text-decoration: none; margin-top: 20px;">
+            📲 未有密碼？點擊 WhatsApp 燊Sir 索取
+        </a>
     </div>
 
     <!-- 一般家長：單週解鎖顯示區 -->
@@ -1236,7 +1243,7 @@
 </div>
 
 <script>
-    const SYSTEM_START_WEEK = 30; // 系統起始營運週數
+    const SYSTEM_START_WEEK = 30; 
 
     function getCurrentISOWeek() {
         const d = new Date();
